@@ -1,7 +1,7 @@
-import steps as steps
 from safetydance_test import TestStepPrefix
 from safetydance_test.step_extension import all_steps_as_step_extensions_from
-from type_extension import extension
+from type_extensions import extension_property
+from . import steps
 
 
 class Http:
@@ -13,8 +13,7 @@ class Http:
 
 _HTTP = Http()
 
-@property
-@extension
+@extension_property
 def http(self: TestStepPrefix) -> Http:
     return _HTTP
 
