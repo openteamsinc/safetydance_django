@@ -38,6 +38,14 @@ def get(*args, **kwargs):
     http_response = http_client.get(*args, **kwargs)
 
 @step
+def get_created(*args, **kwargs):
+    '''Perform HTTP GET of `location` header.'''
+    http_response = http_client.get(
+            http_response['location'],
+            *args,
+            **kwargs)
+
+@step
 def post(*args, **kwargs):
     http_response = http_client.post(*args, **kwargs)
 
@@ -63,8 +71,9 @@ def response_json_is(expected):
     Check that the expected response json body matches the received response
     body.
     '''
-    self.content_type_is('application/json')
+    content_type_is('application/json')
     observed = http_response.json()
+    assert isinstance(observed, dict)
     assert json_values_match(expected, observed)
 
 @step
