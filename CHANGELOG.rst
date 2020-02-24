@@ -4,6 +4,11 @@ safetydance_django Change Log
 
 .. current developments
 
+v0.0.4
+====================
+
+
+
 v0.0.3
 ====================
 
