@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from copy import deepcopy
+from pprint import pformat
 from safetydance import step, step_data
 from rest_framework.test import APIClient
 import pytest
@@ -58,7 +59,18 @@ def status_code_is(expected):
     '''
     Check that the expected status code matches the received status code
     '''
-    assert http_response.status_code == expected
+    assert http_response.status_code == expected,\
+            pformat(http_response.data) if http_response.data is not None else ""
+
+@step
+def status_code_is_one_of(*expected):
+    '''
+    Check that the expected status code matches the received status code
+    '''
+    assert http_response.status_code in expected,\
+            pformat(http_response.data) if http_response.data is not None else ""
+
+
 
 @step
 def content_type_is(expected):
