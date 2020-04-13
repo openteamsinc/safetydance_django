@@ -85,7 +85,6 @@ def response_json_is(expected):
     '''
     content_type_is('application/json')
     observed = http_response.json()
-    assert isinstance(observed, dict)
     assert json_values_match(expected, observed)
 
 @step
